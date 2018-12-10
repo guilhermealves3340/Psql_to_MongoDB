@@ -8,18 +8,7 @@ db = client['aulasBD']
 
 col = db['clientes']
 
-docs = [
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-    {'_id': 'sobrenome': 'endereco': 'numero': 'complemento': 'estado': 'fone_fixo': 'fone_movel': 'fg_ativo':}
-]
-
-id = ''
+_id = ''
 sobrenome = ''
 endereco = ''
 numero = ''
@@ -29,7 +18,7 @@ fone_fixo = ''
 fone_movel = ''
 fg_ativo = ''
 
-keys = '{"_id":"{}","sobrenome":"{}","endereco":"{}","numero":"{}","complemento":"{}","estado":"{}","fone_fixo":"{}","fone_movel":"{}","fg_ativo":"{}"}'.format(id,sobrenome,endereco,numero,complemento,estado,fone_fixo, fone_movel,fg_ativo)
+keys = '{"_id":"{}","sobrenome":"{}","endereco":"{}","numero":"{}","complemento":"{}","estado":"{}","fone_fixo":"{}","fone_movel":"{}","fg_ativo":"{}"}'
 
 
 values = [
@@ -41,10 +30,32 @@ values = [
     ('6', 'Sr', 'Claudinei', 'Safra', 'Avenida José Osvaldo Marques', '1562', '', '14173 010', 'Sertãozinho', 'SP', '3698 8100', '8131 6409', '1'),
     ('7', 'Sr', 'Ricardo', 'Ferreira', 'Alameda Assunta Barizani Tienghi', '88', '', '18046 705', 'Sorocaba', 'SP', '6534 7099', '9988 1251', '1'),
     ('8', 'Sra', 'Anna', 'Kelly', 'Rua das Acacias', '1089', '', '13187 042', 'Hortolândia', 'SP', '6432 440043', '9465 0023' ,'1'),
-    ('9', 'Sra', 'Cristiane', 'Hickman', 'Rua Agenir Martinhon Scachetti', '300', '', '13341 633', 'Indaiatuba', 'SP', '3512 1243', '9987 0001' ,1),
-    ('10', 'Sr', 'Marcos', 'Augusto', 'Avenida Australia', 's/n', '', '06852 100', 'Itapecerica da Serra', 'SP', '3623 8821', '8891 2333' ,1),
-    ('11', 'Sr', 'David', 'Silva', 'Rua Arcy Prestes Ruggeri', '24', 'Esquina do Mercado', '18201 720', 'Itapetininga', 'SP', '4565 9240', '7765 4029' ,1),
-    ('12', 'Sr', 'Ricardo', 'Cunha', 'Rua Jose Fortunato de Godoy', '889', '', '13976 121', 'Itapira', 'SP', '5467 1959', '9244 9584' ,1),
-    ('13', 'Sra', 'Laura', 'Batista', 'Rua Villa Lobos', '76', '', '13976 018', 'Ribeirão Preto', 'SP', '2111 8710', '9991 2324' ,1),
-    ('14', 'Sr', 'Valmil', 'Feliciano', 'Rua Professor Emilton Amaral', '961', 'Loteamento Novo Horizonte', '58053 223', 'João Pessoa', 'PB', '4431 8740', '9766 0033' ,1),
-    ('15', 'Sr', 'Agnaldo', 'Aparecido', 'Rua Soldado Celio Tonelli', '778', '', '09240 320', 'Santo André', 'SP', '2386 8092', '99625 3683' ,1)]
+    ('9', 'Sra', 'Cristiane', 'Hickman', 'Rua Agenir Martinhon Scachetti', '300', '', '13341 633', 'Indaiatuba', 'SP', '3512 1243', '9987 0001' ,'1'),
+    ('10', 'Sr', 'Marcos', 'Augusto', 'Avenida Australia', 's/n', '', '06852 100', 'Itapecerica da Serra', 'SP', '3623 8821', '8891 2333' ,'1'),
+    ('11', 'Sr', 'David', 'Silva', 'Rua Arcy Prestes Ruggeri', '24', 'Esquina do Mercado', '18201 720', 'Itapetininga', 'SP', '4565 9240', '7765 4029' ,'1'),
+    ('12', 'Sr', 'Ricardo', 'Cunha', 'Rua Jose Fortunato de Godoy', '889', '', '13976 121', 'Itapira', 'SP', '5467 1959', '9244 9584' ,'1'),
+    ('13', 'Sra', 'Laura', 'Batista', 'Rua Villa Lobos', '76', '', '13976 018', 'Ribeirão Preto', 'SP', '2111 8710', '9991 2324' ,'1'),
+    ('14', 'Sr', 'Valmil', 'Feliciano', 'Rua Professor Emilton Amaral', '961', 'Loteamento Novo Horizonte', '58053 223', 'João Pessoa', 'PB', '4431 8740', '9766 0033' ,'1'),
+    ('15', 'Sr', 'Agnaldo', 'Aparecido', 'Rua Soldado Celio Tonelli', '778', '', '09240 320', 'Santo André', 'SP', '2386 8092', '99625 3683' ,'1')]
+
+saida = []
+for i in range(len(values)):
+    
+    _id = values[i][0]
+    sobrenome = values[i][1]
+    endereco = values[i][2]
+    numero = values[i][3]
+    complemento = values[i][4]
+    estado = values[i][5]
+    fone_fixo = values[i][6]
+    fone_movel = values[i][7]
+    fg_ativo = values[i][8]
+    
+    y = keys.format(_id,sobrenome,endereco,numero,complemento,estado,fone_fixo, fone_movel,fg_ativo)
+    y = json.loads(y)
+    saida.append(y)
+
+col.insert_many(saida)
+
+col = db['codigo_barras']
+
