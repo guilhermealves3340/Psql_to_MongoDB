@@ -8,19 +8,6 @@ db = client['aulasBD']
 
 col = db['clientes']
 
-_id = ''
-sobrenome = ''
-endereco = ''
-numero = ''
-complemento = ''
-estado = ''
-fone_fixo = ''
-fone_movel = ''
-fg_ativo = ''
-
-keys = '{"_id":"{}","sobrenome":"{}","endereco":"{}","numero":"{}","complemento":"{}","estado":"{}","fone_fixo":"{}","fone_movel":"{}","fg_ativo":"{}"}'
-
-
 values = [
     ('1', 'Sra', 'Jessica', 'Mendes', 'Avenida Acelino de Leao', '89', '', '68900 300', 'Macapá', 'AP', '3565 1243', '8765 8999' ,'1'),
     ('2', 'Sr', 'Andrei', 'Junqueira', 'Rua Tabaiares', '1024', '', '30150 040', 'Belo Horizonte', 'BH', '3676 1209', '8876 4543', '1'),
@@ -38,24 +25,26 @@ values = [
     ('14', 'Sr', 'Valmil', 'Feliciano', 'Rua Professor Emilton Amaral', '961', 'Loteamento Novo Horizonte', '58053 223', 'João Pessoa', 'PB', '4431 8740', '9766 0033' ,'1'),
     ('15', 'Sr', 'Agnaldo', 'Aparecido', 'Rua Soldado Celio Tonelli', '778', '', '09240 320', 'Santo André', 'SP', '2386 8092', '99625 3683' ,'1')]
 
+
+mydict = '{"_id":"","titulo":"","nome":"","sobrenome":"","endereco":"","numero":"","complemento":"","estado":"","fone_fixo":"","fone_movel":"","fg_ativo":""}'
+keys = '"_id" "titulo" "nome" sobrenome" endereco" numero" complemento" estado" "fone_fixo" fone_movel" fg_ativo"'.split()
+
 saida = []
 for i in range(len(values)):
+
+    y = json.loads(mydict)
+
+    c = 0
+    for j in keys:
+        y[j] = values[i][c]
+        c += 1
     
-    _id = values[i][0]
-    sobrenome = values[i][1]
-    endereco = values[i][2]
-    numero = values[i][3]
-    complemento = values[i][4]
-    estado = values[i][5]
-    fone_fixo = values[i][6]
-    fone_movel = values[i][7]
-    fg_ativo = values[i][8]
-    
-    y = keys.format(_id,sobrenome,endereco,numero,complemento,estado,fone_fixo, fone_movel,fg_ativo)
-    y = json.loads(y)
     saida.append(y)
 
-col.insert_many(saida)
 
-col = db['codigo_barras']
+x = col.insert_many(saida)
+
+print(x.inserted_ids)
+
+#col = db['codigo_barras']
 
