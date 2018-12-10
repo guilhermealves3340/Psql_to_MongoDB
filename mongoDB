@@ -1,0 +1,97 @@
+— Com o serviço ligado, entrar no console do mongoDB
+mongo
+
+— Criando uma base de dados
+use mydb
+
+— Listando a base de dados
+db
+
+— Listando todas as base de dados
+show dbs
+
+— Inserindo dados de teste na base de dados
+db.mydb.insert({"name":"Ola mundo!!"})
+
+— Dropando uma base de dados
+db.dropDatabase()
+
+— Inserindo valores criados em JSON
+j = { name : "Joao da Silva"}
+t = { x : 3}
+
+db.mydb.save(j)
+db.mydb.save(t)
+
+post = {"title": "My Blog Post",
+        "content": "Here's my blog post.",
+        "date": new Date()}
+
+
+— Criando Collections / Table
+— Nesse ponto é interessante dizer que a collection é semelante a uma tabela
+
+ db.createCollection("media")
+{ "ok" : 1 }
+> nirvana = {"type":"CD",
+"Artisti":"Nirvana",
+Title:"Nevermind",
+Genre:"Grunge",
+Releasedate:"1991.09.24",
+Tracklist:[{
+Track:"1",
+Title: "Smells like teen spirit",
+Length:"5:02"},
+{
+ Track: "2",
+ Title: "In bloom",
+ Length: "4:15"}
+]
+}
+
+db.myCollection.find({"Artisti":"Nirvana"})
+db.myCollection.find({"Artisti":"Nirvana"}).pretty()
+
+db.myCollection.find({Artisti:"Nirvana"},{Tracklist: {$elemMatch: {Track:"1"}}}).pretty()
+db.myCollection.find({Artisti:"Nirvana"},{Tracklist: {$elemMatch: {Track:"2"}}}).pretty()
+
+
+— Campo ID no mongoDB
+O campo identificador é o _id. 
+Esse campo é sempre criado quando um documento é criado. O campo _id é
+diferente do campo id. 
+Você pode ter os dois, mas o mongoDB utiliza o campo _id
+A composição do campo _id é a seguinte:
+ObjectID (12 bytes HEX string) = 
+Date (4 bytes, a timestamp value representing number of seconds since the Unix epoch) + MAC address (3 bytes) + PID (2 bytes) + Counter (3 bytes)
+
+—- Aula de CRUD com MongoDB
+use loja1
+db
+db.createCollection("vendas")
+db.createCollection("clientes")
+
+db.cliente.insertOne({id: 1, titulo: 'Sra', nome: 'Jessica', sobrenome: 'Mendes', endereco:'Avenida Acelino de Leao 89', complemento: "", cep: '68900 300', cidade: 'Macapá', estado: 'AP', telefone_fixo: '3565 1243', celular: '8765 8999' ,ativo: '1'})
+
+db.cliente.insertMany([{_id: 1, titulo: 'Sra', nome: 'Jessica', sobrenome: 'Mendes', endereco:'Avenida Acelino de Leao 89', complemento: "", cep: '68900 300', cidade: 'Macapá', estado: 'AP', telefone_fixo: '3565 1243', celular: '8765 8999' ,ativo: '1'}, {_id: 2, titulo: 'Sra', nome: 'Cristiane', sobrenome: 'Hickman', endereco: 'Rua Agenir Martinhon Scachetti 300', complemento: "", cep: '13341-633', cidade: 'Indaiatuba', estado: 'SP', telefone_fixo: '3512 1243', celular: '9987 0001' ,ativo: '1'}])
+
+— Delete
+db.cliente.deleteOne({_id: 1})
+
+
+db.cliente.find({_id: 2}).pretty()
+db.cliente.find({_id: {$gt: 1}}).pretty()
+
+
+db.cliente.find(
+{nome: {$gt: "Cristiane"}},
+{nome: 1, endereco: 1} 
+).limit(10)
+
+db.cliente.find( {nome: "Cristiane"}, {nome: 1, endereco: 1, cidade: 1}  ).limit(10).pretty()
+db.cliente.find({nome: /.*ane.*/}).pretty() — comando like
+db.cliente.find().sort({nome: -1}).pretty() — ordem descendente
+db.cliente.find().sort({nome: 1}).pretty() — ordem ascendente
+
+db.cliente.update({nome: "Cristiane"},{sobrenome: "Alves", endereco: "Rua Florinda, 31", complemento: "ap302"}) — erro!!
+db.cliente.updateOne({nome: "Cristiane"},{$set:{sobrenome: "Mendes", cidade: "Sao Paulo"}})
